@@ -17,3 +17,6 @@ const server = new ApolloServer({
 });
 server.applyMiddleware({ app });
 
+const port = 4000;
+
+app.listen(port, () => console.info('Apollo GraphQL server is running on localhost:' + port + '/graphql'));
