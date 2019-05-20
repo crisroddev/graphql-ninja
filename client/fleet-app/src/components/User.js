@@ -5,14 +5,27 @@ import query from '../graphql/query';
 export default class User extends Component {
   render() {
     return (
-        <div>
-            <Query query={query}>
-                {({ data }) => {
-                    console.log(data);
-                    return null;
-                }}
-            </Query>
-        </div>
+      <div>
+        <Query query={query}>
+          {({ data, loading }) => {
+            if (loading) return <p>Loading...</p>;
+            return (
+              <div>
+                <ul>
+                {data.users.map(({ id, name, car }) => {
+                  const list = <li key={id}>{name}
+                    <ul>{car.length !== 0 ? 
+                    car.map(( { make, model, colour }) => <li key={`${id}-${make}`}>{make} {model} {colour}</li> ) :
+                    <li>No car</li>}</ul>
+                  </li>
+                  return list;
+                })}
+                </ul>
+              </div>
+            )
+          }}
+        </Query>
+      </div>
     );
   }
 }
