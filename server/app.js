@@ -1,43 +1,19 @@
 const express = require('express');
-const { ApolloServer, gql }  = require('apollo-server-express');
-const users = require('./data').users;
-
 const app = express();
+const { ApolloServer } = require('apollo-server-express');
 
-const me = users[0];
+const models = require('./models');
+const typeDefs = require('./typeDefs');
+const resolvers = require('./resolvers');
 
-const typeDefs = gql`
-    type Query {
-        users: [User]
-        user(id: Int!): User
-        me: User
-    }
-
-    type User {
-        id: ID!
-        name: String!
-    }
-`;
-
-const resolvers = {
-    Query: {
-        users: () => users,
-        user: (parent, { id }) => {
-            //console.log(id)
-            const user = users.filter(user => user.id === id);
-            return user[0];
-        },
-        me: () => me
-    }
-}
-
+const me = models.users[0];
 const server = new ApolloServer({
-    typeDefs,
-    resolvers
+  typeDefs,
+  resolvers,
+  context: {
+    models,
+    me
+  }
 });
-
 server.applyMiddleware({ app });
 
-const port = 4000;
-
-app.listen(port, () => console.group('Apollo graphql running on localhost:'+port+'/graphql'));
