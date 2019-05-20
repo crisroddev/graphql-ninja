@@ -28,7 +28,7 @@ const resolvers = {
       car: (parent, args, { models }) => {
         return models.Car.findAll({
           where: {
-            userId: parentid
+            userId: parent.id
           }
         });
       }
