@@ -5,7 +5,7 @@ const resolvers = {
         return models.User.findAll();
       },
       user: (parent, { id }, { models }) => {
-        models.User.findByPk(id);
+        return models.User.findByPk(id);
       },
       //me: (parent, args, { me }) => me
     },
