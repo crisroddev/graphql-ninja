@@ -1,25 +1,27 @@
 const express = require('express');
 const { ApolloServer, gql }  = require('apollo-server-express');
+const users = require('./data').users;
 
 const app = express();
 
+const me = users[0];
+
 const typeDefs = gql`
     type Query {
+        users: [User]
         me: User
     }
 
     type User {
+        id: ID!
         name: String!
     }
 `;
 
 const resolvers = {
     Query: {
-        me: () => {
-            return {
-                name: 'Susan'
-            }
-        }
+        users: () => users,
+        me: () => me
     }
 }
 
