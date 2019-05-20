@@ -11,6 +11,10 @@ const car = (sequelize, DataTypes) => {
         }
     });
 
+    Car.associate = models => {
+        Car.belongsTo(model.User);
+    };
+
     return Car;
 }
 

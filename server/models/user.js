@@ -5,6 +5,10 @@ const user = (sequelize, Datatypes) => {
         }
     });
 
+    User.associate = models => {
+        User.hasMany(models.Car, { onDelete: 'CASCADE' })
+    }
+
     return User;
 }
 
