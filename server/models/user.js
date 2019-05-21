@@ -39,6 +39,7 @@ const user = (sequelize, Datatypes) => {
     });
 
     return User;
+    
 }
 
 module.exports = user;
