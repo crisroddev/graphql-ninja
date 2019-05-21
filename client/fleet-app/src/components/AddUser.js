@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import query from '../graphql/query';
+import { Button } from 'semantic-ui-react';
 
 const addUser = gql`
     mutation makeUser($name: String!) {
@@ -52,7 +53,7 @@ export default class AddUser extends Component {
               />
             </label>
             <div>
-              <button>Add User</button>
+            <Button color='red' size='large'>Add User</Button>
             </div>
             {loading && <p>Adding usering...</p>}
             {error && <p>Error!</p>}
