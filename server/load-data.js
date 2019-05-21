@@ -4,6 +4,8 @@ const models = require('./models');
 const createData = async() => {
   await models.User.create({
     name: 'Tamas',
+    username: 'tamas',
+    password: 'test',
     cars: [{
       make: 'Mercedes',
       model: 'A250',
@@ -15,6 +17,8 @@ const createData = async() => {
 
   await models.User.create({
     name: 'Susan',
+    username: 'susan',
+    password: 'test',
     cars: [{
       make: 'Toyota',
       model: 'Yaris',
@@ -26,6 +30,8 @@ const createData = async() => {
 
   await models.User.create({
     name: 'Steven',
+    username: 'steven',
+    password: 'test',
     cars: [{
       make: 'Fiat',
       model: '500',
