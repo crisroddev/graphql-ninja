@@ -8,12 +8,18 @@ const resolvers = {
       }
     },
     Mutation: {
-      createCar: (parent, { make, model, colour }, { models }) => {
+      createCar: (parent, { make, model, colour }, { models, loginUser }) => {
+        if(!loginUser) {
+          throw new Error('Not Authenticated');
+        }
+
         const car = {
           make,
           model,
-          colour
+          colour,
+          userId: loginUser.id
         };
+        
         return models.Car.create(car)
       },
       removeCar: (parent, { id }, { models }) => {
