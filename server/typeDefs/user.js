@@ -9,6 +9,7 @@ module.exports = gql`
     makeUser(name: String!): User!
     removeUser(id: Int!): Boolean
     register(name: String!, username: String!, password: String!): Boolean!
+    login(username: String!, password: String!): Token!
   }
   type User {
     id: ID!
@@ -16,5 +17,8 @@ module.exports = gql`
     username: String!
     #password: String!
     car: [Car]
+  }
+  type Token {
+    token: String!
   }
 `;
