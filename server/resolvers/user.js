@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const cloudinary = require('cloudinary');
+const { GraphQLScalarType } = require('graphql');
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -100,7 +101,21 @@ const resolvers = {
           }
         });
       }
-    }
+    },
+    CloudinaryOptions: new GraphQLScalarType({
+      name: 'CloudinaryOptions',
+      parseValue(value) {
+        return value;
+      },
+      serialize(value) {
+        return value;
+      },
+      parseLiteral(ast) {
+        console.log(ast.value);
+        return ast;
+      }
+    })
+
   };
   
   
