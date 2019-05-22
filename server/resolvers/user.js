@@ -104,6 +104,18 @@ const resolvers = {
       photo:(parent, {options }) => {
         let url = cloudinary.url(parent.photo);
         // console.log(options);
+        if(options) {
+          const [ width, q_auto, f_auto, face ] = options;
+          const cloudinaryOptions = {
+            ...(q_auto === 'true' && { quality: 'auto'} ),
+            ...(f_auto === 'true' && { fetch_format: 'auto'}),
+            ...(face && { crop: 'thumb', gravity: 'face'}),
+            width,
+            secure: true
+          };
+          url = cloudinary.url(parent.photo, cloudinaryOptions);
+          return url;
+        }
         return url;
       }
     },
