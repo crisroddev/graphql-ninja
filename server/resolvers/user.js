@@ -100,6 +100,10 @@ const resolvers = {
             userId: parent.id
           }
         });
+      },
+      photo:(parent, {options }) => {
+        let url = cloudinary.url(parent.photo);
+        return url;
       }
     },
     CloudinaryOptions: new GraphQLScalarType({
