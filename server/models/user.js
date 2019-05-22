@@ -17,6 +17,9 @@ const user = (sequelize, Datatypes) => {
             validate: {
                 notEmpty: true
             }
+        },
+        photo: {
+            type: Datatypes.STRING
         }
     });
 
