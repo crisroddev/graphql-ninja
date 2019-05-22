@@ -103,6 +103,7 @@ const resolvers = {
       },
       photo:(parent, {options }) => {
         let url = cloudinary.url(parent.photo);
+        // console.log(options);
         return url;
       }
     },
@@ -115,8 +116,9 @@ const resolvers = {
         return value;
       },
       parseLiteral(ast) {
-        console.log(ast.value);
-        return ast;
+        // console.log(ast.value);
+        // return ast;
+        return ast.value.split(',');
       }
     })
 
