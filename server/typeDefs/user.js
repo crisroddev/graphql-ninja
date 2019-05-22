@@ -19,7 +19,7 @@ module.exports = gql`
     name: String!
     username: String!
     #password: String!
-    photo: String
+    photo(options: CloudinaryOptions): String
     car: [Car]
   }
   
@@ -27,4 +27,6 @@ module.exports = gql`
   type Token {
     token: String!
   }
+
+  scalar CloudinaryOptions
 `;
