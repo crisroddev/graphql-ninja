@@ -18,6 +18,7 @@ module.exports = gql`
     name: String!
     username: String!
     #password: String!
+    photo: String
     car: [Car]
   }
   
