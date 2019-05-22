@@ -23,6 +23,7 @@ module.exports = gql`
     car: [Car]
   }
   
+  
   type Token {
     token: String!
   }
