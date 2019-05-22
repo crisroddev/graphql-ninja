@@ -70,6 +70,26 @@ const resolvers = {
         return {
           token: createToken(user, secret, '30m')
         }
+      },
+      uploadImage: async (parent, { filename }, { models, loginUser }) => {
+        if(!loginUser){
+          throw new Error('User not Authenticated');
+        }
+        const path = require('path');
+        const mainDir = path.dirname(require.main.filename);
+        filename = `${mainDir}/uploads/${filename}`;
+        try{
+          const photo = await cloudinary.v2.uploader.upload(filename);
+          await models.User.update({
+            photo: `${photo.public_id}.${photo.format}`
+          }, {
+            where: { username: loginUser.username}
+          });
+          return `${photo.public_id}.${photo.format}`
+        } catch(error) {
+          throw new Error(error);
+        }
+
       }
     },
     User: {
