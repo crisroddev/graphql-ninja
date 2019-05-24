@@ -32,6 +32,18 @@ class LoginForm extends Component {
         this.setState({ password: value});
     }
 
+    submitForm = (event, login) => {
+        event.preventDefault();
+        login({
+            variables: {
+                username: this.state.username,
+                password: this.state.password
+            }
+        }).then(({ data}) => {
+            console.log(data);
+        }).catch(error => console.error(error));
+    };
+
     render() {
         const validForm =
         this.state.username !== '' &&
