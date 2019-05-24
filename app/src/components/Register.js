@@ -40,6 +40,12 @@ class RegisterForm extends Component {
         });
     }
 
+    resetFields = () => {
+        this.setState({ name: ''});
+        this.setState({ username: ''});
+        this.setState({ password: ''});
+    }
+
 
     render() {
         return(
