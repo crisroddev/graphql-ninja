@@ -33,6 +33,11 @@ class LoginForm extends Component {
     }
 
     render() {
+        const validForm =
+        this.state.username !== '' &&
+        this.state.password !== '';
+
+
         return (
             <Mutation mutation={loginUser}>
             {( login, { loading, error }) => (
