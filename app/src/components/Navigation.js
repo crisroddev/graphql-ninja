@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const NavigationNoAuth = () => (
     <ul>
-        <li>Login</li>
-        <li>Register</li>
+        <li><link to="/login">Login</link></li>
+        <li><link to="/register">Register</link></li>
     </ul>
 );
 
