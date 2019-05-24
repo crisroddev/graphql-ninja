@@ -11,12 +11,34 @@ const loginUser = gql`
 `;
 
 
-export default class LoginPage extends Component {
+const LoginPage = () => (
+    <div>
+      <h2>Register</h2>
+      <LoginForm />
+    </div>
+);
+
+class LoginForm extends Component {
+    state = {
+        username:'',
+        password: ''
+    };
+
+    usernameChanged = ({ target: { value}}) => {
+        this.setState({ username: value});
+    }
+
+    passwordChanged = ({ target: { value}}) => {
+        this.setState({ password: value});
+    }
+
     render() {
         return (
             <div>
-                <h2>Login</h2>
+                
             </div>
         )
     }
-};
+}
+
+export default LoginPage;
