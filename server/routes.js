@@ -24,6 +24,7 @@ const index = async (req, res) => {
     }`;
     const response = await fetchGraphQL(query);
     return res.render('index' ,{
+        intro: 'Welcome:',
         users: response.data.users
     });
 };
