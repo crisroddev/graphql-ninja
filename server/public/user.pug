@@ -1,0 +1,12 @@
+h3= data.name
+if data.car.length === 0
+    p This user has no cars.
+if data.car
+    ul
+        for car in data.car
+            li #{car.make} #{car.model} (#{car.colour})
+
+
+
+p
+    a(href='/') Go back

@@ -43,15 +43,16 @@ const userInfo = async (req,res) => {
             }
         }
         `;
+        const response = await fetchGraphQL(query);
+        return res.render('user', {
+            data: response.data.user
+        });
     }
-    const response = await fetchGraphQL(query);
-    return res.render('user', {
-        data: response.data.user
-    });
     return res.status(400).send('Please provide an ID');
 }
 
 module.exports = {
-    index
+    index,
+    userInfo
 }
 
