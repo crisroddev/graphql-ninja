@@ -12,10 +12,10 @@ const loginUser = gql`
 `;
 
 
-const LoginPage = () => (
+const LoginPage = ({ history }) => (
     <div>
       <h2>Register</h2>
-      <LoginForm />
+      <LoginForm history={history} />
     </div>
 );
 
@@ -43,6 +43,7 @@ class LoginForm extends Component {
         }).then(({ data}) => {
             // console.log(data);
             localStorage.setItem('token', data.login.token);
+            this.props.history.push('/profile');
         }).catch(error => console.error(error));
     };
 
