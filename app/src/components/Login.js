@@ -40,7 +40,8 @@ class LoginForm extends Component {
                 password: this.state.password
             }
         }).then(({ data}) => {
-            console.log(data);
+            // console.log(data);
+            localStorage.setItem('token', data.login.token)
         }).catch(error => console.error(error));
     };
 
