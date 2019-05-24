@@ -34,6 +34,10 @@ const server = new ApolloServer({
 });
 
 server.applyMiddleware({ app });
+
+app.set('view engine', 'pug');
+app.set('views', `${__dirname}/public`);
+
 app.use(cors());
 
 const port = 4000;
