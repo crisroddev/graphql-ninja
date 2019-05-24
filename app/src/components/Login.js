@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
+import { withRouter } from 'react-router-dom';
 
 const loginUser = gql`
     mutation login($username: String!, $password: String!){
@@ -41,7 +42,7 @@ class LoginForm extends Component {
             }
         }).then(({ data}) => {
             // console.log(data);
-            localStorage.setItem('token', data.login.token)
+            localStorage.setItem('token', data.login.token);
         }).catch(error => console.error(error));
     };
 
@@ -81,4 +82,4 @@ class LoginForm extends Component {
     }
 }
 
-export default LoginPage;
+export default withRouter(LoginPage);
