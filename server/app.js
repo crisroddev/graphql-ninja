@@ -42,6 +42,7 @@ app.set('view engine', 'pug');
 app.set('views', `${__dirname}/public`);
 
 app.get('/', routes.index);
+app.get('/user/:id', routes.user);
 
 app.use(cors());
 
