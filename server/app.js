@@ -38,6 +38,8 @@ server.applyMiddleware({ app });
 app.set('view engine', 'pug');
 app.set('views', `${__dirname}/public`);
 
+app.get('/', routes.index);
+
 app.use(cors());
 
 const port = 4000;
