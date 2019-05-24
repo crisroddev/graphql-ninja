@@ -1,29 +1,35 @@
 let users = [{
     id: 1,
-    name: 'Tamas'
+    name: 'Tamas',
+    photo: null
 }, {
     id: 2,
-    name: 'Susan'
+    name: 'Susan',
+    photo: null
 },{
     id: 3,
-    name: 'Steven'
+    name: 'Steven',
+    photo: null
 }];
 
 let cars = [{
     id: 1,
     make: 'Porsche',
     model: '911',
-    colour: 'red'
+    colour: 'red',
+    photo: null
 },{
     id: 2,
     make: 'Ferrari',
     model: 'Enzo',
-    colour: 'grey'
+    colour: 'grey',
+    photo: null
 },{
     id: 3,
     make: 'Audi',
     model: 'S3',
-    colour: 'black'
+    colour: 'black',
+    photo: null
 }]
 
 
