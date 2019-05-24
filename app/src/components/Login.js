@@ -34,9 +34,31 @@ class LoginForm extends Component {
 
     render() {
         return (
-            <div>
-                
-            </div>
+            <Mutation mutation={loginUser}>
+            {( login, { loading, error }) => (
+                <form onSubmit={evt => this.submitForm(evt, login)}>
+                    <label>
+                        <span>Username</span>
+                    <input
+                        type="text"
+                        value={this.state.username}
+                        onChange={this.usernameChanged}
+                    />
+                    </label>
+                    <label>
+                        <span>Password</span>
+                        <input
+                            type="password"
+                            value={this.state.password}
+                            onChange={this.passwordChanged}
+                        />
+                    </label>
+                    <div>
+                        <button disabled={!validForm}>Login</button>
+                    </div>
+                 </form>
+                )}
+            </Mutation>
         )
     }
 }
