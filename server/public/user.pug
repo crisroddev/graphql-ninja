@@ -1,4 +1,10 @@
 h3= data.name
+if !data.photo
+    p
+        img(src='/')
+if data.photo
+    p
+        img(src=data.photo)
 if data.car.length === 0
     p This user has no cars.
 if data.car
