@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 const NavigationNoAuth = () => (
     <ul>
-        <li><link to="/login">Login</link></li>
-        <li><link to="/register">Register</link></li>
+        <li><Link to="/login">Login</Link></li>
+        <li><Link to="/register">Register</Link></li>
     </ul>
 );
 
