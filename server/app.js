@@ -11,6 +11,9 @@ const resolvers = require('./resolvers');
 
 const jwt = require('jsonwebtoken');
 
+// Routes
+const routes = require('./routes');
+
 //req access via const app = express();
 const getLoggedInUser = req => {
   const token = req.headers['x-auth-token'];
