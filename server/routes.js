@@ -34,6 +34,7 @@ const userInfo = async (req,res) => {
             user(id: ${id}) {
                 id
                 name
+                photo(options: "200, true, true, face")
                 car {
                     id
                     make
