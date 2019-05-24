@@ -1,7 +1,7 @@
 h3= data.name
 if !data.photo
     p
-        img(src='/')
+        img(src='https://res.cloudinary.com/dxdvxsi7g/image/upload/c_thumb,w_200,g_face/v1558713550/avatar_k6cb63.png')
 if data.photo
     p
         img(src=data.photo)
@@ -12,6 +12,11 @@ if data.car
         for car in data.car
             li #{car.make} #{car.model} (#{car.colour})
 
+p Upload as profile Photo
+form(mehtod='post', action='/upload', enctype='multipart/form-data')
+    input(type='file', name='file')
+    inout(type='hidden', value=data.id, name='id')
+    input(type="submit", value='Upload')
 
 
 p
