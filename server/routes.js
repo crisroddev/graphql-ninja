@@ -1,73 +1,40 @@
-const fetch = require('node-fetch');
-async function fetchGraphQL(query, variables = {}) {
-  const response = await fetch('http://localhost:4000/graphql', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      query,
-      variables
-    })
-  });
-  return response.json();
-}
+require('dotenv').config();
+const express = require('express');
+const app = express();
+const { ApolloServer } = require('apollo-server-express');
+const multer = require('multer');
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function(req, file, cb) {
+    cb(null, file.originalname)
+  }
+});
+const upload = multer({ storage });
 
-const index = async (req, res) => {
-    const query = `{
-        users {
-            id
-            name
-        }
-    }`;
-    const response = await fetchGraphQL(query);
-    return res.render('index' ,{
-        intro: 'Welcome:',
-        users: response.data.users
-    });
-};
+const models = require('./models');
+const typeDefs = require('./typeDefs');
+const resolvers = require('./resolvers');
 
-const userInfo = async (req,res) => {
-    const { id } = req.params;
-    if(id) {
-        const query = `{
-            user(id: ${id}) {
-                id
-                name
-                photo(options: "200, true, true, face")
-                car {
-                    id
-                    make
-                    model
-                    colour
-                }
-            }
-        }
-        `;
-        const response = await fetchGraphQL(query);
-        return res.render('user', {
-            data: response.data.user
-        });
-    }
-    return res.status(400).send('Please provide an ID');
-};
+const routes = require('./routes');
 
-const upload = async (req, res) => {
-    const id = +req.body.id;
-    const uploadedFile = req.files.file[0];
-    const filename = uploadedFile.filename;
-    const mutation = `
-    mutation($filename: String!, $id: Int!) {
-        uploadImage(filename: $filename, id: $id)
-    }
-    `;
-    await fetchGraphQL(mutation, { filename, id});
-    return res.redirect(req.get('referer'));
-};
+const loginUser = models.users[0];
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: {
+    models,
+    loginUser
+  }
+});
+server.applyMiddleware({ app });
 
-module.exports = {
-    index,
-    userInfo,
-    upload
-}
+app.set('view engine', 'pug');
+app.set('views', `${__dirname}/public`);
 
+app.get('/', routes.index);
+app.get('/user/:id', routes.userinfo);
+app.post('/upload', upload.fields([{ name: 'file' }, { name: 'id' }]), routes.upload);
+
+app.listen(4000, () => console.info('Apollo GraphQL server is running on port 3000'));
