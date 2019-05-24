@@ -55,7 +55,7 @@ app.set('views', `${__dirname}/public`);
 
 app.get('/', routes.index);
 app.get('/user/:id', routes.userInfo);
-app.post('/upload', upload.fields([{ name: 'file'}, { name: 'id' }]), routes.upload)
+app.post('/upload', upload.fields([{ name: 'file'}, { name: 'id' }]), routes.upload);
 
 app.use(cors());
 
