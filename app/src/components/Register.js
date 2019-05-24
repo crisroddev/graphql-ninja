@@ -48,6 +48,11 @@ class RegisterForm extends Component {
 
 
     render() {
+        const validForm =
+            this.state.name !== '' &&
+            this.state.name !== '' &&
+            this.state.passwrod !== '';
+            
         return(
             <Mutation mutation={registerUser}>
             {( register, { loading, error }) => (
