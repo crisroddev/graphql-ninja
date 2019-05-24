@@ -49,10 +49,24 @@ const userInfo = async (req,res) => {
         });
     }
     return res.status(400).send('Please provide an ID');
-}
+};
+
+const upload = async (req, res) => {
+    const id = +req.body.id;
+    const uploadedFile = req.files.file[0];
+    const filename = uploadedFile.filename;
+    const mutation = `
+    mutation($filename: String!, $id: Int!) {
+        uploadImage(filename: $filename, id: $id)
+    }
+    `;
+    await fetchGraphQL(mutation, { filename, id});
+    return res.redirect(req.get('referer'));
+};
 
 module.exports = {
     index,
-    userInfo
+    userInfo,
+    upload
 }
 
