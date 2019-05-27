@@ -16,6 +16,8 @@ export const client = new ApolloClient({
           'x-auth-token': token
         }
       });
+    } else{
+      operation.setContext();
     }
   }
 });
