@@ -5,7 +5,7 @@ import Navigation from './components/Navigation';
 // Components Impors
 import LoginPage from './components/Login';
 import RegisterPage from './components/Register';
-import Profile from './components/Profile';
+import ProfilePage from './components/ProfilePage';
 
 export default class App extends Component {
   render() {
@@ -17,7 +17,7 @@ export default class App extends Component {
             <hr/>
             <Route path="/login" component={LoginPage}/>
             <Route path="/register" component={RegisterPage}/>
-            <Route path="/profile" component={Profile}/>
+            <Route path="/profile" component={ProfilePage}/>
           </Fragment>
         </Router>
       </div>
