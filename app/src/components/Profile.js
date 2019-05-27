@@ -3,7 +3,7 @@ import activeSession from './ActiveSession';
 
 const ProfilePage = ({ session }) => (
     <div>
-        <Profile session={session}/>
+    { session && session.me  && <Profile session={session}/> }
     </div>
 );
 
